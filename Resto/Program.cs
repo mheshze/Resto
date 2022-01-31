@@ -117,18 +117,51 @@ public class Restos
     {
         public static void Main(string[] args)
         {
-            // demo implementations
-             // Restos r = new Restos();
-             // r.reserve();
+            switcher:
+            Console.WriteLine("Choose and implement SRP ...\n1.Normal Classes\n2.Abstract Classes\n3.Interfaces\n4.Virtual Methods\n");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("-------NORMAL CLASSES-------\n");
+                    Restos r = new Restos();
+                    r.reserve();
+                    break;
+                case 2:
+                    Console.WriteLine("-------ABSTRACT CLASSES-------\n");
+                    OverrideReservation abstractR = new OverrideReservation();
+                    abstractR.absReserve();
+                    break;
+                case 3:
+                    Console.WriteLine("-------INTERFACE IMPLEMENTATIONS-------\n");
+                    iOverrideReservation interfacer = new iOverrideReservation();
+                    interfacer.iReserve();
+                    break;
+                case 4:
+                    Console.WriteLine("-------VIRTUAL METHOD IMPLEMENTATIONS-------\n");
+                    virOvrReservation virtualReserve = new virOvrReservation();
+                    virtualReserve.virReserve();
+                    break;
+                default:
+                    Console.WriteLine("ERROR : Please choose a valid input!!");
+                    goto switcher;
+                    
+            }
 
-             //abstact classes implementations
+
+
+            // demo implementations
+            // Restos r = new Restos();
+            // r.reserve();
+
+            //abstact classes implementations
             // OverrideReservation r = new OverrideReservation();
             //  r.absReserve();
-            
+
             // interface implementations
             // iOverrideReservation interfacer = new iOverrideReservation();
             // interfacer.iReserve();
-            
+
             // virtual methods implementations
             // virOvrReservation virtualReserve = new virOvrReservation();
             // virtualReserve.virReserve();
