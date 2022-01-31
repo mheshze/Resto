@@ -1,28 +1,41 @@
-﻿// look so what we are gonna do now is show restraunts ,
-// get the use to choose a restraunt
-// and then show the menus
-
 namespace Resto;
 
-public class Restos
+public abstract class absDispRestos // Displays items from database
 {
+    public abstract void abDisplayRes();
+    public abstract void abDisplayTimes(OperatingModel stuff);
+}
+
+public abstract class absReservation
+{
+    public abstract void absReserve();
+}
+
+public abstract class absCalculations
+{
+    public abstract double absAvgRatings(RestrauntModel record);
+}
+
+public class OverrideDispResto : absDispRestos
+{
+    
     private string[] days = new[]{"Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"};
     MongoConnection db = new MongoConnection();
-
-    public void display() // SRP _ 1
+    public override void abDisplayRes()
     {
         List<RestrauntModel> recs = db.LoadAllRecords<RestrauntModel>("restos");
+        OverrideCalculations c = new OverrideCalculations();
         Console.WriteLine("List of Restraunts : ");
         for (int i = 0; i < recs.Count; i++)
         {
             Console.Write($"\t{recs[i].id}.{recs[i].name} ");
             Console.Write("----");
-            Console.WriteLine($" Rating : {avgRatings(recs[i])}\n");
+            Console.WriteLine($" Rating : {c.absAvgRatings(recs[i])}\n");
             
         }
     }
 
-    public void displayTimes(OperatingModel stuff)
+    public override void abDisplayTimes(OperatingModel stuff)
     {
         Console.WriteLine("OPEN ON : ");
         Console.WriteLine($"Monday    : {stuff.Monday}");
@@ -34,27 +47,41 @@ public class Restos
         Console.WriteLine($"Sunday    : {stuff.Sunday}");
         Console.WriteLine("\n");
     }
-
-    public void displaySpecTime(OperatingModel stuff,string day)
+}  // Responsibility 1 - Displaying
+public class OverrideCalculations : absCalculations
+{
+    public override double absAvgRatings(RestrauntModel record)
     {
-        // Console.Write("OPEN ON : ");
-        // OperatingModel time = db.GetTimeDay<OperatingModel>("restos", day);
-        // Console.WriteLine($"{time}");
-    }
+        double total = 0;
+        int i = 0;
+        foreach (var review in record.reviews)
+        {
+            total += review.rating;
+            i++;
+        }
 
-    public void reserve() //srp_2 -- make a seperate class and call this with different functions
+        return Math.Round(total / i, 2); 
+    }
+} // Responsibility 2 - Calculations
+
+public class OverrideReservation : absReservation
+{
+    private MongoConnection db = new MongoConnection();
+    
+    public override void absReserve()
     {
         Console.WriteLine("RESERVATION DETAILS");
         // pick restraunts for reservation
         up:
-        display();
+        OverrideDispResto d = new OverrideDispResto();
+        d.abDisplayRes();
         try
         {
             Console.Write("Pick the number : ");
             int num = Convert.ToInt32(Console.ReadLine());
             var record = db.LoadById<RestrauntModel>("restos", num);
             Console.WriteLine($"\n\n\t{record.name.ToUpper()}");
-            displayTimes(record.operating_hours);
+            d.abDisplayTimes(record.operating_hours);
             Console.WriteLine("When do you wanna book your table??");
             Console.Write("Day : ");
             string reserve_day = Console.ReadLine();
@@ -81,32 +108,6 @@ public class Restos
                 Console.WriteLine("Please enter Yes or No!!");
                 goto confirm;
             }
-        }
-    } 
-    public double avgRatings(RestrauntModel record)
-    {
-        double total = 0;
-        int i = 0;
-        foreach (var review in record.reviews)
-        {
-            total += review.rating;
-            i++;
-        }
-
-        return Math.Round(total / i, 2);
-    }
-
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            // Restos r = new Restos();
-            // r.reserve();
-
-            OverrideReservation r = new OverrideReservation();
-            r.absReserve();
-
-
-        }
+        }  
     }
 }
