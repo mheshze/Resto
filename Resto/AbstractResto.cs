@@ -81,10 +81,31 @@ public class OverrideReservation : absReservation
             int num = Convert.ToInt32(Console.ReadLine());
             var record = db.LoadById<RestrauntModel>("restos", num);
             Console.WriteLine($"\n\n\t{record.name.ToUpper()}");
+            
             d.abDisplayTimes(record.operating_hours);
+            
             Console.WriteLine("When do you wanna book your table??");
             Console.Write("Day : ");
             string reserve_day = Console.ReadLine();
+            
+            // Datetime implementation
+            time:
+            Console.Write($"What time on {reserve_day}?: ");
+            int time = Convert.ToInt32(Console.ReadLine());
+            if (time >= 1 && time < 12)
+            {
+            Console.WriteLine($"Booked Table at {time}:00am...");
+            }
+            else if(time >= 12 && time <= 24)
+            {
+            Console.WriteLine($"Booked Table at {time}:00pm...");
+            }
+            else
+            {
+                Console.WriteLine("Invalid Time Input!!");
+                goto time;
+            }
+            
             // function(,record,day)
 
 
@@ -94,6 +115,8 @@ public class OverrideReservation : absReservation
             Console.WriteLine("\n\tOH NO :(\n\tWe noticed a problem!\n");
             confirm:
             Console.Write("Want to continue??? : ");
+            
+            //Confirmations 
             string confirmation = Console.ReadLine();
             if (confirmation.ToUpper().StartsWith("Y"))
             {
