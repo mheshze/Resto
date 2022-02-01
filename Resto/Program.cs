@@ -6,7 +6,7 @@ namespace Resto;
 
 public class Restos
 {
-    private string[] days = new[]{"Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    // private string[] days = new[]{"Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"};
     MongoConnection db = new MongoConnection();
 
     public void display() // SRP _ 1
