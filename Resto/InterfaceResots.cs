@@ -115,7 +115,6 @@ public class iOverrideReservation : iReservation
             Console.WriteLine("\n\tOH NO :(\n\tWe noticed a problem!\n");
             confirm:
             Console.Write("Want to continue??? : ");
-            
             //Confirmations 
             string confirmation = Console.ReadLine();
             if (confirmation.ToUpper().StartsWith("Y"))
