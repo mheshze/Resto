@@ -120,20 +120,3 @@ sealed public class Calculations{
 }
 
 
-public class Days
-{
-    public void dayTimings(OperatingModel op)
-    {
-        Console.WriteLine("Please choose a date : ");
-    }
-    
-}
-
-public class Monday : Days
-{
-    public void dayTimings(OperatingModel op)
-    {
-        Console.WriteLine($"The timings for Monday are : {op.Monday}");
-        // testing for git and git hub
-    }
-}
