@@ -187,36 +187,36 @@ public sealed class Tuesday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Monday are {op.operating_hours.Tuesday}");
+        Console.WriteLine($"The timings for Tuesday are {op.operating_hours.Tuesday}");
     }
 }public sealed class Wednesday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Monday are {op.operating_hours.Wednesday}");
+        Console.WriteLine($"The timings for Wednesday are {op.operating_hours.Wednesday}");
     }
 }public sealed class Thursday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Monday are {op.operating_hours.Thursday}");
+        Console.WriteLine($"The timings for Thursday are {op.operating_hours.Thursday}");
     }
 }public sealed class Friday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Monday are {op.operating_hours.Friday}");
+        Console.WriteLine($"The timings for Friday are {op.operating_hours.Friday}");
     }
 }public sealed class Saturday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Monday are {op.operating_hours.Saturday}");
+        Console.WriteLine($"The timings for Saturday are {op.operating_hours.Saturday}");
     }
 }public sealed class Sunday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Monday are {op.operating_hours.Sunday}");
+        Console.WriteLine($"The timings for Sunday are {op.operating_hours.Sunday}");
     }
 }
