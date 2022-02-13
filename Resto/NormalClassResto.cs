@@ -24,7 +24,7 @@ public class displayRestos
 
     public void displayTimes(OperatingModel stuff)
     {
-        Console.WriteLine("OPEN ON : ");
+        Console.WriteLine("\nOPEN ON : ");
         Console.WriteLine($"1.Monday    : {stuff.Monday}");
         Console.WriteLine($"2.Tuesday   : {stuff.Tuesday}");
         Console.WriteLine($"3.Wednesday : {stuff.Wednesday}");
@@ -61,16 +61,16 @@ public class Reservation
             Console.WriteLine($"\n\n\t{record.name.ToUpper()}");
             
             Console.WriteLine("When do you wanna book your table??" +
-                              "\n1.Monday" +
-                              "\n2.Tuesday" +
-                              "\n3.Wednesday" +
-                              "\n4.Thursday" +
-                              "\n5.Friday" +
-                              "\n6.Saturday" +
-                              "\n7.Sunday" +
-                              "\n0.All Timings");
-            int day = Convert.ToInt32(Console.ReadLine());
+                              "\n\t1.Monday" +
+                              "\n\t2.Tuesday" +
+                              "\n\t3.Wednesday" +
+                              "\n\t4.Thursday" +
+                              "\n\t5.Friday" +
+                              "\n\t6.Saturday" +
+                              "\n\t7.Sunday" +
+                              "\n\t0.All Timings");
             Console.Write("Day : ");
+            int day = Convert.ToInt32(Console.ReadLine());
             // string reserve_day = Console.ReadLine();
             switch (day)
             {
@@ -177,7 +177,6 @@ public sealed class Monday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        base.displayDay(op);
         Console.WriteLine($"The timings for Monday are {op.operating_hours.Monday}");
     }
 }
@@ -185,42 +184,36 @@ public sealed class Tuesday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        base.displayDay(op);
         Console.WriteLine($"The timings for Monday are {op.operating_hours.Tuesday}");
     }
 }public sealed class Wednesday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        base.displayDay(op);
         Console.WriteLine($"The timings for Monday are {op.operating_hours.Wednesday}");
     }
 }public sealed class Thursday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        base.displayDay(op);
         Console.WriteLine($"The timings for Monday are {op.operating_hours.Thursday}");
     }
 }public sealed class Friday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        base.displayDay(op);
         Console.WriteLine($"The timings for Monday are {op.operating_hours.Friday}");
     }
 }public sealed class Saturday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        base.displayDay(op);
         Console.WriteLine($"The timings for Monday are {op.operating_hours.Saturday}");
     }
 }public sealed class Sunday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        base.displayDay(op);
         Console.WriteLine($"The timings for Monday are {op.operating_hours.Sunday}");
     }
 }
