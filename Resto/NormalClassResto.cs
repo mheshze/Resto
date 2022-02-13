@@ -60,26 +60,44 @@ public class Reservation
             var record = db.LoadById<RestrauntModel>("restos", num);
             Console.WriteLine($"\n\n\t{record.name.ToUpper()}");
             dp.displayTimes(record.operating_hours);
-            Console.WriteLine("When do you wanna book your table??");
+            Console.WriteLine("When do you wanna book your table??" +
+                              "\n1.Monday" +
+                              "\n2.Tuesday" +
+                              "\n3.Wednesday" +
+                              "\n4.Thursday" +
+                              "\n5.Friday" +
+                              "\n6.Saturday" +
+                              "\n7.Sunday\n");
+            int day = Convert.ToInt32(Console.ReadLine());
             Console.Write("Day : ");
-            string reserve_day = Console.ReadLine();
+            // string reserve_day = Console.ReadLine();
+            switch (day)
+            {
+                case 1:
+                    Days d1 = new Monday();
+                    d1.displayDay(record);
+                    break;
+            }
+            
+            
+            
             // Datetime implementation
-            time:
-            Console.Write($"What time on {reserve_day}?: ");
-            int time = Convert.ToInt32(Console.ReadLine());
-            if (time >= 1 && time < 12)
-            {
-                Console.WriteLine($"Booked Table at {time}:00am...");
-            }
-            else if (time >= 12 && time <= 24)
-            {
-                Console.WriteLine($"Booked Table at {time}:00pm...");
-            }
-            else
-            {
-                Console.WriteLine("Invalid Time Input!!");
-                goto time;
-            }
+            // time:
+            // Console.Write($"What time on {reserve_day}?: ");
+            // int time = Convert.ToInt32(Console.ReadLine());
+            // if (time >= 1 && time < 12)
+            // {
+            //     Console.WriteLine($"Booked Table at {time}:00am...");
+            // }
+            // else if (time >= 12 && time <= 24)
+            // {
+            //     Console.WriteLine($"Booked Table at {time}:00pm...");
+            // }
+            // else
+            // {
+            //     Console.WriteLine("Invalid Time Input!!");
+            //     goto time;
+            // }
         }
         catch (Exception e)
         {
@@ -119,4 +137,62 @@ sealed public class Calculations{
     }
 }
 
+public class Days
+{
+    public virtual void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings");
+    }
+}
 
+public sealed class Monday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        base.displayDay(op);
+        Console.WriteLine($"The timings for Monday are {op.operating_hours.Monday}");
+    }
+}
+public sealed class Tuesday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        base.displayDay(op);
+        Console.WriteLine($"The timings for Monday are {op.operating_hours.Tuesday}");
+    }
+}public sealed class Wednesday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        base.displayDay(op);
+        Console.WriteLine($"The timings for Monday are {op.operating_hours.Wednesday}");
+    }
+}public sealed class Thursday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        base.displayDay(op);
+        Console.WriteLine($"The timings for Monday are {op.operating_hours.Thursday}");
+    }
+}public sealed class Friday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        base.displayDay(op);
+        Console.WriteLine($"The timings for Monday are {op.operating_hours.Friday}");
+    }
+}public sealed class Saturday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        base.displayDay(op);
+        Console.WriteLine($"The timings for Monday are {op.operating_hours.Saturday}");
+    }
+}public sealed class Sunday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        base.displayDay(op);
+        Console.WriteLine($"The timings for Monday are {op.operating_hours.Sunday}");
+    }
+}
