@@ -59,7 +59,7 @@ public class Reservation
             int num = Convert.ToInt32(Console.ReadLine());
             var record = db.LoadById<RestrauntModel>("restos", num);
             Console.WriteLine($"\n\n\t{record.name.ToUpper()}");
-            
+            toptime:
             Console.WriteLine("When do you wanna book your table??" +
                               "\n\t1.Monday" +
                               "\n\t2.Tuesday" +
@@ -105,6 +105,9 @@ public class Reservation
                     Days d7 = new Sunday();
                     d7.displayDay(record);
                     break;
+                case 8:
+                    Console.WriteLine("Invalid Option!!!");
+                    goto toptime;
             }
             
             
