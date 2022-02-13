@@ -59,7 +59,7 @@ public class Reservation
             int num = Convert.ToInt32(Console.ReadLine());
             var record = db.LoadById<RestrauntModel>("restos", num);
             Console.WriteLine($"\n\n\t{record.name.ToUpper()}");
-            dp.displayTimes(record.operating_hours);
+            
             Console.WriteLine("When do you wanna book your table??" +
                               "\n1.Monday" +
                               "\n2.Tuesday" +
@@ -67,7 +67,8 @@ public class Reservation
                               "\n4.Thursday" +
                               "\n5.Friday" +
                               "\n6.Saturday" +
-                              "\n7.Sunday\n");
+                              "\n7.Sunday" +
+                              "\n0.All Timings");
             int day = Convert.ToInt32(Console.ReadLine());
             Console.Write("Day : ");
             // string reserve_day = Console.ReadLine();
@@ -76,6 +77,33 @@ public class Reservation
                 case 1:
                     Days d1 = new Monday();
                     d1.displayDay(record);
+                    break;
+                case 0 :
+                    dp.displayTimes(record.operating_hours);
+                    break;
+                case 2:
+                    Days d2 = new Tuesday();
+                    d2.displayDay(record);
+                    break;
+                case 3:
+                    Days d3 = new Wednesday();
+                    d3.displayDay(record);
+                    break;
+                case 4:
+                    Days d4 = new Thursday();
+                    d4.displayDay(record);
+                    break;
+                case 5:
+                    Days d5 = new Friday();
+                    d5.displayDay(record);
+                    break;
+                case 6:
+                    Days d6 = new Saturday();
+                    d6.displayDay(record);
+                    break;
+                case 7:
+                    Days d7 = new Sunday();
+                    d7.displayDay(record);
                     break;
             }
             
