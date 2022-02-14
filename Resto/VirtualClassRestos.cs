@@ -86,8 +86,8 @@ public class virOvrReservation : virReservation
     {
         Console.WriteLine("RESERVATION DETAILS");
         // pick restraunts for reservation
-        up:
         virDispResto d = new virDispResto();
+        up:
         d.virDisplayRes();
         try
         {
@@ -95,32 +95,73 @@ public class virOvrReservation : virReservation
             int num = Convert.ToInt32(Console.ReadLine());
             var record = db.LoadById<RestrauntModel>("restos", num);
             Console.WriteLine($"\n\n\t{record.name.ToUpper()}");
-            
-            d.virDisplayTimes(record.operating_hours);
-            
-            Console.WriteLine("When do you wanna book your table??");
+            toptime:
+            Console.WriteLine("When do you wanna book your table??" +
+                              "\n\t1.Monday" +
+                              "\n\t2.Tuesday" +
+                              "\n\t3.Wednesday" +
+                              "\n\t4.Thursday" +
+                              "\n\t5.Friday" +
+                              "\n\t6.Saturday" +
+                              "\n\t7.Sunday" +
+                              "\n\t0.All Timings");
             Console.Write("Day : ");
-            string reserve_day = Console.ReadLine();
-            
-            // Datetime implementation
-            time:
-            Console.Write($"What time on {reserve_day}?: ");
-            int time = Convert.ToInt32(Console.ReadLine());
-            if (time >= 1 && time < 12)
+            int day = Convert.ToInt32(Console.ReadLine());
+            // string reserve_day = Console.ReadLine();
+            switch (day)
             {
-            Console.WriteLine($"Booked Table at {time}:00am...");
+                case 1:
+                    Days d1 = new virMonday();
+                    d1.displayDay(record);
+                    break;
+                case 0 :
+                    d.virDisplayTimes(record.operating_hours);
+                    break;
+                case 2:
+                    Days d2 = new virTuesday();
+                    d2.displayDay(record);
+                    break;
+                case 3:
+                    Days d3 = new virWednesday();
+                    d3.displayDay(record);
+                    break;
+                case 4:
+                    Days d4 = new virThursday();
+                    d4.displayDay(record);
+                    break;
+                case 5:
+                    Days d5 = new virFriday();
+                    d5.displayDay(record);
+                    break;
+                case 6:
+                    Days d6 = new virSaturday();
+                    d6.displayDay(record);
+                    break;
+                case 7:
+                    Days d7 = new virSunday();
+                    d7.displayDay(record);
+                    break;
+                case 8:
+                    Console.WriteLine("Invalid Option!!!");
+                    goto toptime;
             }
-            else if(time >= 12 && time <= 24)
-            {
-            Console.WriteLine($"Booked Table at {time}:00pm...");
-            }
-            else
-            {
-                Console.WriteLine("Invalid Time Input!!");
-                goto time;
-            }
-            
-            // function(,record,day)
+            // // Datetime implementation
+            // time:
+            // Console.Write($"What time on {reserve_day}?: ");
+            // int time = Convert.ToInt32(Console.ReadLine());
+            // if (time >= 1 && time < 12)
+            // {
+            // Console.WriteLine($"Booked Table at {time}:00am...");
+            // }
+            // else if(time >= 12 && time <= 24)
+            // {
+            // Console.WriteLine($"Booked Table at {time}:00pm...");
+            // }
+            // else
+            // {
+            //     Console.WriteLine("Invalid Time Input!!");
+            //     goto time;
+            // }
 
 
         }
@@ -148,3 +189,57 @@ public class virOvrReservation : virReservation
         }  
     }
 }
+
+public class virDays
+{
+    public virtual void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings");
+    }
+}
+
+public sealed class virMonday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Monday are {op.operating_hours.Monday}");
+    }
+}
+public sealed class virTuesday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Tuesday are {op.operating_hours.Tuesday}");
+    }
+}public sealed class virWednesday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Wednesday are {op.operating_hours.Wednesday}");
+    }
+}public sealed class virThursday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Thursday are {op.operating_hours.Thursday}");
+    }
+}public sealed class virFriday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Friday are {op.operating_hours.Friday}");
+    }
+}public sealed class virSaturday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Saturday are {op.operating_hours.Saturday}");
+    }
+}public sealed class virSunday : Days
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Sunday are {op.operating_hours.Sunday}");
+    }
+}
+
