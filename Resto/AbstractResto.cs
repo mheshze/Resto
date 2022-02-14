@@ -19,7 +19,7 @@ public abstract class absCalculations
 public class OverrideDispResto : absDispRestos
 {
     
-    private string[] days = new[]{"Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    private string[] abDays = new[]{"Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"};
     MongoConnection db = new MongoConnection();
     public override void abDisplayRes()
     {
@@ -72,8 +72,8 @@ public class OverrideReservation : absReservation
     {
         Console.WriteLine("RESERVATION DETAILS");
         // pick restraunts for reservation
-        up:
         OverrideDispResto d = new OverrideDispResto();
+        up:
         d.abDisplayRes();
         try
         {
@@ -81,32 +81,73 @@ public class OverrideReservation : absReservation
             int num = Convert.ToInt32(Console.ReadLine());
             var record = db.LoadById<RestrauntModel>("restos", num);
             Console.WriteLine($"\n\n\t{record.name.ToUpper()}");
-            
-            d.abDisplayTimes(record.operating_hours);
-            
-            Console.WriteLine("When do you wanna book your table??");
+            toptime:
+            Console.WriteLine("When do you wanna book your table??" +
+                              "\n\t1.Monday" +
+                              "\n\t2.Tuesday" +
+                              "\n\t3.Wednesday" +
+                              "\n\t4.Thursday" +
+                              "\n\t5.Friday" +
+                              "\n\t6.Saturday" +
+                              "\n\t7.Sunday" +
+                              "\n\t0.All Timings");
             Console.Write("Day : ");
-            string reserve_day = Console.ReadLine();
-            
+            int day = Convert.ToInt32(Console.ReadLine());
+            // string reserve_day = Console.ReadLine();
+            switch (day)
+            {
+                case 1:
+                    abDays d1 = new abMonday();
+                    d1.displayDay(record);
+                    break;
+                case 0 :
+                    d.abDisplayTimes(record.operating_hours);
+                    break;
+                case 2:
+                    abDays d2 = new abTuesday();
+                    d2.displayDay(record);
+                    break;
+                case 3:
+                    abDays d3 = new abWednesday();
+                    d3.displayDay(record);
+                    break;
+                case 4:
+                    abDays d4 = new abThursday();
+                    d4.displayDay(record);
+                    break;
+                case 5:
+                    abDays d5 = new abFriday();
+                    d5.displayDay(record);
+                    break;
+                case 6:
+                    abDays d6 = new abSaturday();
+                    d6.displayDay(record);
+                    break;
+                case 7:
+                    abDays d7 = new abSunday();
+                    d7.displayDay(record);
+                    break;
+                case 8:
+                    Console.WriteLine("Invalid Option!!!");
+                    goto toptime;
+            }
             // Datetime implementation
-            time:
-            Console.Write($"What time on {reserve_day}?: ");
-            int time = Convert.ToInt32(Console.ReadLine());
-            if (time >= 1 && time < 12)
-            {
-            Console.WriteLine($"Booked Table at {time}:00am...");
-            }
-            else if(time >= 12 && time <= 24)
-            {
-            Console.WriteLine($"Booked Table at {time}:00pm...");
-            }
-            else
-            {
-                Console.WriteLine("Invalid Time Input!!");
-                goto time;
-            }
-            
-            // function(,record,day)
+            // time:
+            // Console.Write($"What time on {reserve_day}?: ");
+            // int time = Convert.ToInt32(Console.ReadLine());
+            // if (time >= 1 && time < 12)
+            // {
+            // Console.WriteLine($"Booked Table at {time}:00am...");
+            // }
+            // else if(time >= 12 && time <= 24)
+            // {
+            // Console.WriteLine($"Booked Table at {time}:00pm...");
+            // }
+            // else
+            // {
+            //     Console.WriteLine("Invalid Time Input!!");
+            //     goto time;
+            // }
 
 
         }
@@ -134,3 +175,58 @@ public class OverrideReservation : absReservation
         }  
     }
 } // Responsibility 3 - Reservation
+
+
+// OCP Implementation
+public class abDays
+{
+    public virtual void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings");
+    }
+}
+
+public sealed class abMonday : abDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Monday are {op.operating_hours.Monday}");
+    }
+}
+public sealed class abTuesday : abDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Tuesday are {op.operating_hours.Tuesday}");
+    }
+}public sealed class abWednesday : abDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Wednesday are {op.operating_hours.Wednesday}");
+    }
+}public sealed class abThursday : abDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Thursday are {op.operating_hours.Thursday}");
+    }
+}public sealed class abFriday : abDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Friday are {op.operating_hours.Friday}");
+    }
+}public sealed class abSaturday : abDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Saturday are {op.operating_hours.Saturday}");
+    }
+}public sealed class abSunday : abDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Sunday are {op.operating_hours.Sunday}");
+    }
+}
