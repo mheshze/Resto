@@ -98,34 +98,34 @@ public class OverrideReservation : absReservation
             {
                 case 1:
                     abDays d1 = new abMonday();
-                    d1.displayDay(record);
+                    d1.abdisplayDay(record);
                     break;
                 case 0 :
                     d.abDisplayTimes(record.operating_hours);
                     break;
                 case 2:
                     abDays d2 = new abTuesday();
-                    d2.displayDay(record);
+                    d2.abdisplayDay(record);
                     break;
                 case 3:
                     abDays d3 = new abWednesday();
-                    d3.displayDay(record);
+                    d3.abdisplayDay(record);
                     break;
                 case 4:
                     abDays d4 = new abThursday();
-                    d4.displayDay(record);
+                    d4.abdisplayDay(record);
                     break;
                 case 5:
                     abDays d5 = new abFriday();
-                    d5.displayDay(record);
+                    d5.abdisplayDay(record);
                     break;
                 case 6:
                     abDays d6 = new abSaturday();
-                    d6.displayDay(record);
+                    d6.abdisplayDay(record);
                     break;
                 case 7:
                     abDays d7 = new abSunday();
-                    d7.displayDay(record);
+                    d7.abdisplayDay(record);
                     break;
                 case 8:
                     Console.WriteLine("Invalid Option!!!");
@@ -178,54 +178,51 @@ public class OverrideReservation : absReservation
 
 
 // OCP Implementation
-public class abDays
+public abstract class abDays
 {
-    public virtual void displayDay(RestrauntModel op)
-    {
-        Console.WriteLine($"The timings");
-    }
+    public abstract void abdisplayDay(RestrauntModel op);
 }
 
 public sealed class abMonday : abDays
 {
-    public override void displayDay(RestrauntModel op)
+    public override void abdisplayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Monday are {op.operating_hours.Monday}");
     }
 }
 public sealed class abTuesday : abDays
 {
-    public override void displayDay(RestrauntModel op)
+    public override void abdisplayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Tuesday are {op.operating_hours.Tuesday}");
     }
 }public sealed class abWednesday : abDays
 {
-    public override void displayDay(RestrauntModel op)
+    public override void abdisplayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Wednesday are {op.operating_hours.Wednesday}");
     }
 }public sealed class abThursday : abDays
 {
-    public override void displayDay(RestrauntModel op)
+    public override void abdisplayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Thursday are {op.operating_hours.Thursday}");
     }
 }public sealed class abFriday : abDays
 {
-    public override void displayDay(RestrauntModel op)
+    public override void abdisplayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Friday are {op.operating_hours.Friday}");
     }
 }public sealed class abSaturday : abDays
 {
-    public override void displayDay(RestrauntModel op)
+    public override void abdisplayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Saturday are {op.operating_hours.Saturday}");
     }
 }public sealed class abSunday : abDays
 {
-    public override void displayDay(RestrauntModel op)
+    public override void abdisplayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Sunday are {op.operating_hours.Sunday}");
     }

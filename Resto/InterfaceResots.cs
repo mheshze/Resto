@@ -175,54 +175,51 @@ public class iOverrideReservation : iReservation
     }
 }
 // OCP Implementation
-public class iDays
+interface iDays
 {
-    public virtual void displayDay(RestrauntModel op)
-    {
-        Console.WriteLine($"The timings");
-    }
+    public void displayDay(RestrauntModel op);
 }
 
 public sealed class iMonday : iDays
 {
-    public override void displayDay(RestrauntModel op)
+    public  void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Monday are {op.operating_hours.Monday}");
     }
 }
 public sealed class iTuesday : iDays
 {
-    public override void displayDay(RestrauntModel op)
+    public void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Tuesday are {op.operating_hours.Tuesday}");
     }
 }public sealed class iWednesday : iDays
 {
-    public override void displayDay(RestrauntModel op)
+    public void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Wednesday are {op.operating_hours.Wednesday}");
     }
 }public sealed class iThursday : iDays
 {
-    public override void displayDay(RestrauntModel op)
+    public void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Thursday are {op.operating_hours.Thursday}");
     }
 }public sealed class iFriday : iDays
 {
-    public override void displayDay(RestrauntModel op)
+    public void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Friday are {op.operating_hours.Friday}");
     }
 }public sealed class iSaturday : iDays
 {
-    public override void displayDay(RestrauntModel op)
+    public void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Saturday are {op.operating_hours.Saturday}");
     }
 }public sealed class iSunday : iDays
 {
-    public override void displayDay(RestrauntModel op)
+    public void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Sunday are {op.operating_hours.Sunday}");
     }
