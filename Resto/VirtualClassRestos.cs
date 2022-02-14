@@ -111,34 +111,34 @@ public class virOvrReservation : virReservation
             switch (day)
             {
                 case 1:
-                    Days d1 = new virMonday();
+                    virDays d1 = new virMonday();
                     d1.displayDay(record);
                     break;
                 case 0 :
                     d.virDisplayTimes(record.operating_hours);
                     break;
                 case 2:
-                    Days d2 = new virTuesday();
+                    virDays d2 = new virTuesday();
                     d2.displayDay(record);
                     break;
                 case 3:
-                    Days d3 = new virWednesday();
+                    virDays d3 = new virWednesday();
                     d3.displayDay(record);
                     break;
                 case 4:
-                    Days d4 = new virThursday();
+                    virDays d4 = new virThursday();
                     d4.displayDay(record);
                     break;
                 case 5:
-                    Days d5 = new virFriday();
+                    virDays d5 = new virFriday();
                     d5.displayDay(record);
                     break;
                 case 6:
-                    Days d6 = new virSaturday();
+                    virDays d6 = new virSaturday();
                     d6.displayDay(record);
                     break;
                 case 7:
-                    Days d7 = new virSunday();
+                    virDays d7 = new virSunday();
                     d7.displayDay(record);
                     break;
                 case 8:
@@ -190,6 +190,8 @@ public class virOvrReservation : virReservation
     }
 }
 
+
+// OCP Implementation
 public class virDays
 {
     public virtual void displayDay(RestrauntModel op)
@@ -198,44 +200,44 @@ public class virDays
     }
 }
 
-public sealed class virMonday : Days
+public sealed class virMonday : virDays
 {
     public override void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Monday are {op.operating_hours.Monday}");
     }
 }
-public sealed class virTuesday : Days
+public sealed class virTuesday : virDays
 {
     public override void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Tuesday are {op.operating_hours.Tuesday}");
     }
-}public sealed class virWednesday : Days
+}public sealed class virWednesday : virDays
 {
     public override void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Wednesday are {op.operating_hours.Wednesday}");
     }
-}public sealed class virThursday : Days
+}public sealed class virThursday : virDays
 {
     public override void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Thursday are {op.operating_hours.Thursday}");
     }
-}public sealed class virFriday : Days
+}public sealed class virFriday : virDays
 {
     public override void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Friday are {op.operating_hours.Friday}");
     }
-}public sealed class virSaturday : Days
+}public sealed class virSaturday : virDays
 {
     public override void displayDay(RestrauntModel op)
     {
         Console.WriteLine($"The timings for Saturday are {op.operating_hours.Saturday}");
     }
-}public sealed class virSunday : Days
+}public sealed class virSunday : virDays
 {
     public override void displayDay(RestrauntModel op)
     {

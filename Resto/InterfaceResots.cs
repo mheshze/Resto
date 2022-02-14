@@ -72,42 +72,83 @@ public class iOverrideReservation : iReservation
     {
         Console.WriteLine("RESERVATION DETAILS");
         // pick restraunts for reservation
+        iOverrideDispResto d = new iOverrideDispResto();
         up:
-        OverrideDispResto d = new OverrideDispResto();
-        d.abDisplayRes();
+        d.iDisplayRes();
         try
         {
             Console.Write("Pick the number : ");
             int num = Convert.ToInt32(Console.ReadLine());
             var record = db.LoadById<RestrauntModel>("restos", num);
             Console.WriteLine($"\n\n\t{record.name.ToUpper()}");
-            
-            d.abDisplayTimes(record.operating_hours);
-            
-            Console.WriteLine("When do you wanna book your table??");
+            toptime:
+            Console.WriteLine("When do you wanna book your table??" +
+                              "\n\t1.Monday" +
+                              "\n\t2.Tuesday" +
+                              "\n\t3.Wednesday" +
+                              "\n\t4.Thursday" +
+                              "\n\t5.Friday" +
+                              "\n\t6.Saturday" +
+                              "\n\t7.Sunday" +
+                              "\n\t0.All Timings");
             Console.Write("Day : ");
-            string reserve_day = Console.ReadLine();
-            
-            // Datetime implementation
-            time:
-            Console.Write($"What time on {reserve_day}?: ");
-            int time = Convert.ToInt32(Console.ReadLine());
-            if (time >= 1 && time < 12)
+            int day = Convert.ToInt32(Console.ReadLine());
+            // string reserve_day = Console.ReadLine();
+            switch (day)
             {
-            Console.WriteLine($"Booked Table at {time}:00am...");
+                case 1:
+                    iDays d1 = new iMonday();
+                    d1.displayDay(record);
+                    break;
+                case 0 :
+                    d.iDisplayTimes(record.operating_hours);
+                    break;
+                case 2:
+                    iDays d2 = new iTuesday();
+                    d2.displayDay(record);
+                    break;
+                case 3:
+                    iDays d3 = new iWednesday();
+                    d3.displayDay(record);
+                    break;
+                case 4:
+                    iDays d4 = new iThursday();
+                    d4.displayDay(record);
+                    break;
+                case 5:
+                    iDays d5 = new iFriday();
+                    d5.displayDay(record);
+                    break;
+                case 6:
+                    iDays d6 = new iSaturday();
+                    d6.displayDay(record);
+                    break;
+                case 7:
+                    iDays d7 = new iSunday();
+                    d7.displayDay(record);
+                    break;
+                case 8:
+                    Console.WriteLine("Invalid Option!!!");
+                    goto toptime;
             }
-            else if(time >= 12 && time <= 24)
-            {
-            Console.WriteLine($"Booked Table at {time}:00pm...");
-            }
-            else
-            {
-                Console.WriteLine("Invalid Time Input!!");
-                goto time;
-            }
-            
-            // function(,record,day)
 
+            // Datetime implementation
+            // time:
+            // Console.Write($"What time on {reserve_day}?: ");
+            // int time = Convert.ToInt32(Console.ReadLine());
+            // if (time >= 1 && time < 12)
+            // {
+            // Console.WriteLine($"Booked Table at {time}:00am...");
+            // }
+            // else if(time >= 12 && time <= 24)
+            // {
+            // Console.WriteLine($"Booked Table at {time}:00pm...");
+            // }
+            // else
+            // {
+            //     Console.WriteLine("Invalid Time Input!!");
+            //     goto time;
+            // }
 
         }
         catch (Exception e)
@@ -131,5 +172,58 @@ public class iOverrideReservation : iReservation
                 goto confirm;
             }
         }  
+    }
+}
+// OCP Implementation
+public class iDays
+{
+    public virtual void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings");
+    }
+}
+
+public sealed class iMonday : iDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Monday are {op.operating_hours.Monday}");
+    }
+}
+public sealed class iTuesday : iDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Tuesday are {op.operating_hours.Tuesday}");
+    }
+}public sealed class iWednesday : iDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Wednesday are {op.operating_hours.Wednesday}");
+    }
+}public sealed class iThursday : iDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Thursday are {op.operating_hours.Thursday}");
+    }
+}public sealed class iFriday : iDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Friday are {op.operating_hours.Friday}");
+    }
+}public sealed class iSaturday : iDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Saturday are {op.operating_hours.Saturday}");
+    }
+}public sealed class iSunday : iDays
+{
+    public override void displayDay(RestrauntModel op)
+    {
+        Console.WriteLine($"The timings for Sunday are {op.operating_hours.Sunday}");
     }
 }
