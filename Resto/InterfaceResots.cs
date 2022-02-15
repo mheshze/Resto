@@ -19,13 +19,13 @@ interface iCalculations
 public class iOverrideDispResto : iDispRestos
 {
     
-    private string[] days = new[]{"Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    private string[] days = new[]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     MongoConnection db = new MongoConnection();
     public void iDisplayRes()
     {
         List<RestrauntModel> recs = db.LoadAllRecords<RestrauntModel>("restos");
         iCalc c = new iCalc();
-        Console.WriteLine("List of Restraunts : ");
+        Console.WriteLine("List of Restaurants : ");
         for (int i = 0; i < recs.Count; i++)
         {
             Console.Write($"\t{recs[i].id}.{recs[i].name} ");

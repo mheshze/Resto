@@ -25,7 +25,7 @@ public class OverrideDispResto : absDispRestos
     {
         List<RestrauntModel> recs = db.LoadAllRecords<RestrauntModel>("restos");
         OverrideCalculations c = new OverrideCalculations();
-        Console.WriteLine("List of Restraunts : ");
+        Console.WriteLine("List of Restaurants : ");
         for (int i = 0; i < recs.Count; i++)
         {
             Console.Write($"\t{recs[i].id}.{recs[i].name} ");

@@ -12,7 +12,7 @@ public class displayRestos
     {
         List<RestrauntModel> recs = db.LoadAllRecords<RestrauntModel>("restos");
         Calculations c1 = new Calculations();
-        Console.WriteLine("List of Restraunts : ");
+        Console.WriteLine("List of Restaurants : ");
         for (int i = 0; i < recs.Count; i++)
         {
             Console.Write($"\t{recs[i].id}.{recs[i].name} ");
