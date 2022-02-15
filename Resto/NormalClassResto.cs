@@ -71,38 +71,39 @@ public class Reservation
                               "\n\t0.All Timings");
             Console.Write("Day : ");
             int day = Convert.ToInt32(Console.ReadLine());
-            // string reserve_day = Console.ReadLine();
+            
+            // LSP Implementations - Each case represents a subtype acting as objects for a base-type called Days
             switch (day)
             {
                 case 1:
-                    Days d1 = new Monday();
+                    Days d1 = new Monday();  // LSP -1 T1
                     d1.displayDay(record);
                     break;
                 case 0 :
                     dp.displayTimes(record.operating_hours);
                     break;
                 case 2:
-                    Days d2 = new Tuesday();
+                    Days d2 = new Tuesday(); // LSP -1 T2
                     d2.displayDay(record);
                     break;
                 case 3:
-                    Days d3 = new Wednesday();
+                    Days d3 = new Wednesday(); // LSP -1 T3
                     d3.displayDay(record);
                     break;
                 case 4:
-                    Days d4 = new Thursday();
+                    Days d4 = new Thursday(); // LSP -1 T4
                     d4.displayDay(record);
                     break;
                 case 5:
-                    Days d5 = new Friday();
+                    Days d5 = new Friday(); // LSP -1 T5
                     d5.displayDay(record);
                     break;
                 case 6:
-                    Days d6 = new Saturday();
+                    Days d6 = new Saturday(); // LSP -1 T6
                     d6.displayDay(record);
                     break;
                 case 7:
-                    Days d7 = new Sunday();
+                    Days d7 = new Sunday(); // LSP -1 T7
                     d7.displayDay(record);
                     break;
                 case 8:

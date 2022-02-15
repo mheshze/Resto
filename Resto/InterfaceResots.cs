@@ -93,38 +93,39 @@ public class iOverrideReservation : iReservation
                               "\n\t0.All Timings");
             Console.Write("Day : ");
             int day = Convert.ToInt32(Console.ReadLine());
-            // string reserve_day = Console.ReadLine();
+            
+            // LSP Implementations - Each case represents a subtype acting as objects for a base-type called Days
             switch (day)
             {
                 case 1:
-                    iDays d1 = new iMonday();
+                    iDays d1 = new iMonday(); // LSP -1 T1
                     d1.displayDay(record);
                     break;
                 case 0 :
                     d.iDisplayTimes(record.operating_hours);
                     break;
                 case 2:
-                    iDays d2 = new iTuesday();
+                    iDays d2 = new iTuesday(); // LSP -1 T2
                     d2.displayDay(record);
                     break;
                 case 3:
-                    iDays d3 = new iWednesday();
+                    iDays d3 = new iWednesday(); // LSP -1 T3
                     d3.displayDay(record);
                     break;
                 case 4:
-                    iDays d4 = new iThursday();
+                    iDays d4 = new iThursday(); // LSP -1 T4
                     d4.displayDay(record);
                     break;
                 case 5:
-                    iDays d5 = new iFriday();
+                    iDays d5 = new iFriday(); // LSP -1 T5
                     d5.displayDay(record);
                     break;
                 case 6:
-                    iDays d6 = new iSaturday();
+                    iDays d6 = new iSaturday(); // LSP -1 T6
                     d6.displayDay(record);
                     break;
                 case 7:
-                    iDays d7 = new iSunday();
+                    iDays d7 = new iSunday(); // LSP -1 T7
                     d7.displayDay(record);
                     break;
                 case 8:

@@ -93,38 +93,39 @@ public class OverrideReservation : absReservation
                               "\n\t0.All Timings");
             Console.Write("Day : ");
             int day = Convert.ToInt32(Console.ReadLine());
-            // string reserve_day = Console.ReadLine();
+            
+            // LSP Implementations - Each case represents a subtype acting as objects for a base-type called Days
             switch (day)
             {
                 case 1:
-                    abDays d1 = new abMonday();
+                    abDays d1 = new abMonday(); // LSP -1 T1
                     d1.abdisplayDay(record);
                     break;
                 case 0 :
                     d.abDisplayTimes(record.operating_hours);
                     break;
                 case 2:
-                    abDays d2 = new abTuesday();
+                    abDays d2 = new abTuesday(); // LSP -1 T2
                     d2.abdisplayDay(record);
                     break;
                 case 3:
-                    abDays d3 = new abWednesday();
+                    abDays d3 = new abWednesday(); // LSP -1 T3
                     d3.abdisplayDay(record);
                     break;
                 case 4:
-                    abDays d4 = new abThursday();
+                    abDays d4 = new abThursday(); // LSP -1 T4
                     d4.abdisplayDay(record);
                     break;
                 case 5:
-                    abDays d5 = new abFriday();
+                    abDays d5 = new abFriday(); // LSP -1 T5
                     d5.abdisplayDay(record);
                     break;
                 case 6:
-                    abDays d6 = new abSaturday();
+                    abDays d6 = new abSaturday(); // LSP -1 T6
                     d6.abdisplayDay(record);
                     break;
                 case 7:
-                    abDays d7 = new abSunday();
+                    abDays d7 = new abSunday(); // LSP -1 T7
                     d7.abdisplayDay(record);
                     break;
                 case 8:
