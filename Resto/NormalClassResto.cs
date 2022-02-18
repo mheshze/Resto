@@ -1,5 +1,5 @@
 // look so what we are gonna do now is show restraunts ,
-// get the use to choose a restraunt
+// get the use to choose a Restaurant
 // and then show the menus
 
 namespace Resto;
@@ -175,6 +175,10 @@ public class Days
 {
     public virtual void displayDay(RestrauntModel op)
     {
+        if (op.operating_hours.Saturday == "Closed")
+        {
+            Console.WriteLine("Restaurant is Closed");
+        }
         Console.WriteLine($"The timings");
     }
 }
@@ -183,43 +187,98 @@ public sealed class Monday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Monday are {op.operating_hours.Monday}");
+        if (op.operating_hours.Monday == "Closed")
+        {
+            Console.WriteLine("Restaurant is Closed");
+        }
+        else
+        {
+            Console.WriteLine($"The timings for Monday are {op.operating_hours.Monday}");
+        }
+
     }
 }
 public sealed class Tuesday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Tuesday are {op.operating_hours.Tuesday}");
+        if (op.operating_hours.Tuesday == "Closed")
+        {
+            Console.WriteLine("Restaurant is Closed");
+        }
+        else
+        {
+            Console.WriteLine($"The timings for Tuesday are {op.operating_hours.Tuesday}");
+        }
+
     }
 }public sealed class Wednesday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Wednesday are {op.operating_hours.Wednesday}");
+        if (op.operating_hours.Wednesday == "Closed")
+        {
+            Console.WriteLine("Restaurant is Closed");
+        }
+        else
+        {
+            Console.WriteLine($"The timings for Wednesday are {op.operating_hours.Wednesday}");
+        }
+
     }
 }public sealed class Thursday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Thursday are {op.operating_hours.Thursday}");
+        if (op.operating_hours.Thursday == "Closed")
+        {
+            Console.WriteLine("Restaurant is Closed");
+        }
+        else
+        {
+            Console.WriteLine($"The timings for Thursday are {op.operating_hours.Thursday}");
+        }
+
     }
 }public sealed class Friday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Friday are {op.operating_hours.Friday}");
+        if (op.operating_hours.Friday == "Closed")
+        {
+            Console.WriteLine("Restaurant is Closed");
+        }
+        else
+        {
+            Console.WriteLine($"The timings for Friday are {op.operating_hours.Friday}");
+        }
+
     }
 }public sealed class Saturday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Saturday are {op.operating_hours.Saturday}");
+        if (op.operating_hours.Saturday == "Closed")
+        {
+            Console.WriteLine("Restaurant is Closed");
+        }
+        else
+        {
+            Console.WriteLine($"The timings for Saturday are {op.operating_hours.Saturday}");
+        }
+
     }
 }public sealed class Sunday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        Console.WriteLine($"The timings for Sunday are {op.operating_hours.Sunday}");
+        if (op.operating_hours.Sunday == "Closed")
+        {
+            Console.WriteLine("Restaurant is Closed");
+        }
+        else
+        {
+            Console.WriteLine($"The timings for Sunday are {op.operating_hours.Sunday}");
+        }
     }
 }
