@@ -176,12 +176,12 @@ public class iOverrideReservation : iReservation
     }
 }
 // OCP Implementation
-interface iDays
+interface iDays //open for extension
 {
     public void displayDay(RestrauntModel op);
 }
 
-public sealed class iMonday : iDays
+public sealed class iMonday : iDays //closed for modification 
 {
     public  void displayDay(RestrauntModel op)
     {
