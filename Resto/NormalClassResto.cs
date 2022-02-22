@@ -171,7 +171,7 @@ sealed public class Calculations{
 
 
 // OCP Implementation
-public class Days
+public class Days 
 {
     public virtual void displayDay(RestrauntModel op)
     {
