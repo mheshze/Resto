@@ -1,14 +1,31 @@
-// look so what we are gonna do now is show restraunts ,
+// look so what we are gonna do now is show restaurants
 // get the use to choose a Restaurant
 // and then show the menus
 
 namespace Resto;
 
-public class displayRestos
+interface IDisplay
+{ 
+    void idisplay();
+    void idisplayTimes(OperatingModel op);
+}
+
+
+interface IReserve
+{ 
+    void ireserve();
+}
+
+interface ICalculate
+{
+    double iavgRatings(RestrauntModel record);
+}
+
+public class displayRestos : IDisplay
 {
     MongoConnection db = new MongoConnection();
 
-    public void display() // SRP _ 1
+    public void idisplay() // SRP _ 1
     {
         List<RestrauntModel> recs = db.LoadAllRecords<RestrauntModel>("restos");
         Calculations c1 = new Calculations();
@@ -17,12 +34,12 @@ public class displayRestos
         {
             Console.Write($"\t{recs[i].id}.{recs[i].name} ");
             Console.Write("----");
-            Console.WriteLine($" Rating : {c1.avgRatings(recs[i])}\n");
+            Console.WriteLine($" Rating : {c1.iavgRatings(recs[i])}\n");
 
         }
     }
 
-    public void displayTimes(OperatingModel stuff)
+    public void idisplayTimes(OperatingModel stuff)
     {
         Console.WriteLine("\nOPEN ON : ");
         Console.WriteLine($"1.Monday    : {stuff.Monday}");
@@ -34,7 +51,6 @@ public class displayRestos
         Console.WriteLine($"7.Sunday    : {stuff.Sunday}");
         Console.WriteLine("\n");
     }
-
     // public void displaySpecTime(OperatingModel stuff, string day)
     // {
     //     // Console.Write("OPEN ON : ");
@@ -43,16 +59,17 @@ public class displayRestos
     // }
 }
 
-public class Reservation
+public class Reservation : IReserve
 {
-    public void reserve() //srp_2 -- make a seperate class and call this with different functions
+    public void ireserve() 
+        //srp_2 -- make a seperate class and call this with different functions
     {
         MongoConnection db = new MongoConnection();
         Console.WriteLine("RESERVATION DETAILS");
         // pick restraunts for reservation
         displayRestos dp = new displayRestos();
         up:
-        dp.display();
+        dp.idisplay();
         try
         {
             Console.Write("Pick the number : ");
@@ -80,7 +97,7 @@ public class Reservation
                     d1.displayDay(record);
                     break;
                 case 0 :
-                    dp.displayTimes(record.operating_hours);
+                    dp.idisplayTimes(record.operating_hours);
                     break;
                 case 2:
                     Days d2 = new Tuesday(); // LSP -1 T2
@@ -110,9 +127,6 @@ public class Reservation
                     Console.WriteLine("Invalid Option!!!");
                     goto toptime;
             }
-            
-            
-            
             // Datetime implementation
             // time:
             // Console.Write($"What time on {reserve_day}?: ");
@@ -154,8 +168,9 @@ public class Reservation
     }
 }
 
-sealed public class Calculations{
-    public double avgRatings(RestrauntModel record)
+sealed public class Calculations : ICalculate
+{
+    public double iavgRatings(RestrauntModel record)
     {
         double total = 0;
         int i = 0;
@@ -175,7 +190,7 @@ public class Days
 {
     public virtual void displayDay(RestrauntModel op)
     {
-        if (op.operating_hours.Saturday == "Closed")
+        if (op.operating_hours.Saturday == "Closed") // 3b variable rule
         {
             Console.WriteLine("Restaurant is Closed");
         }
@@ -212,7 +227,8 @@ public sealed class Tuesday : Days
         }
 
     }
-}public sealed class Wednesday : Days
+}
+public sealed class Wednesday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
@@ -226,11 +242,12 @@ public sealed class Tuesday : Days
         }
 
     }
-}public sealed class Thursday : Days
+}
+public sealed class Thursday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
-        if (op.operating_hours.Thursday == "Closed")
+        if(op.operating_hours.Thursday == "Closed")
         {
             Console.WriteLine("Restaurant is Closed");
         }
@@ -240,7 +257,8 @@ public sealed class Tuesday : Days
         }
 
     }
-}public sealed class Friday : Days
+}
+public sealed class Friday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
@@ -252,9 +270,10 @@ public sealed class Tuesday : Days
         {
             Console.WriteLine($"The timings for Friday are {op.operating_hours.Friday}");
         }
-
     }
-}public sealed class Saturday : Days
+}
+public sealed class Saturday : Days
+
 {
     public override void displayDay(RestrauntModel op)
     {
@@ -266,9 +285,9 @@ public sealed class Tuesday : Days
         {
             Console.WriteLine($"The timings for Saturday are {op.operating_hours.Saturday}");
         }
-
     }
-}public sealed class Sunday : Days
+}
+public sealed class Sunday : Days
 {
     public override void displayDay(RestrauntModel op)
     {
@@ -282,3 +301,4 @@ public sealed class Tuesday : Days
         }
     }
 }
+

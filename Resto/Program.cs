@@ -18,7 +18,7 @@ public class Restos
                 case 1:
                     Console.WriteLine("-------NORMAL CLASSES-------\n");
                     Reservation r = new Reservation();
-                    r.reserve();
+                    r.ireserve();
                     break;
                 case 2:
                     Console.WriteLine("-------ABSTRACT CLASSES-------\n");
