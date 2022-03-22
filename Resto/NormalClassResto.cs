@@ -4,7 +4,7 @@
 
 namespace Resto;
 
-interface IDisplay
+interface IDisplay // Interface Dependancy Principle
 { 
     void idisplay();
     void idisplayTimes(OperatingModel op);

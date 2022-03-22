@@ -11,7 +11,7 @@ public class Restos
         public static void Main(string[] args)
         {
             switcher:
-            Console.WriteLine("Choose and implement SRP ...\n1.Normal Classes\n2.Abstract Classes\n3.Interfaces\n4.Virtual Methods\n");
+            Console.WriteLine("Choose and implement SRP ...\n1.Normal Classes\n2.Abstract Classes\n3.Interfaces\n4.Virtual Methods\n\n-----Dependency Injection-----\n\t5.Parameter Injection");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
@@ -34,6 +34,32 @@ public class Restos
                     Console.WriteLine("-------VIRTUAL METHOD IMPLEMENTATIONS-------\n");
                     virOvrReservation virtualReserve = new virOvrReservation();
                     virtualReserve.virReserve();
+                    break;
+                case 5:
+                    rest:
+                    // Dependancy Injection -->> Parameter Injection
+                    Console.Write("Which restaurants (1 or 2)??? : ");
+                    int rest = Convert.ToInt32(Console.ReadLine());
+                    if (rest == 1)
+                    {
+                        Restraunt_1 r1 = new Restraunt_1();
+                        Selector s1 = new Selector(r1);
+                        s1.displayRestraunts();
+                        s1.displayRestrauntTimings();
+                    }
+                    else if(rest == 2)
+                    {
+                        Restraunt_2 r2 = new Restraunt_2();
+                        Selector s2 = new Selector(r2);
+                        s2.displayRestraunts();
+                        s2.displayRestrauntTimings();
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nInvalid Option\n");
+                        goto rest;
+                    }
+                    
                     break;
                 default:
                     Console.WriteLine("ERROR : Please choose a valid input!!");
