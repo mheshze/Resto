@@ -14,16 +14,6 @@ class Restraunt_1: IDisplays
     MongoConnection db = new MongoConnection();
     void IDisplays.iDisplay()
     {
-        // List<RestrauntModel> recs = db.LoadAllRecords<RestrauntModel>("restos");
-        // Calculations c1 = new Calculations();
-        // Console.WriteLine("List of Restaurants : ");
-        // for (int i = 0; i < recs.Count; i++)
-        // {
-        //     Console.Write($"\t{recs[i].id}.{recs[i].name} ");
-        //     Console.Write("----");
-        //     Console.WriteLine($" Rating : {c1.iavgRatings(recs[i])}\n");
-        //
-        // }
         Console.WriteLine("Restaurant 1");
     }
 

@@ -401,9 +401,15 @@
       "packagesPath": "/Users/zerefhesh/.nuget/packages/",
       "outputPath": "/Users/zerefhesh/Desktop/Life and Stuff/Coding/C#/Resto/Resto/obj/",
       "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/zerefhesh/.nuget/NuGet/NuGet.Config"
+      ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",

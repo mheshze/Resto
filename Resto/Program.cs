@@ -11,7 +11,7 @@ public class Restos
         public static void Main(string[] args)
         {
             switcher:
-            Console.WriteLine("Choose and implement SRP ...\n1.Normal Classes\n2.Abstract Classes\n3.Interfaces\n4.Virtual Methods\n\n-----Dependency Injection-----\n\t5.Parameter Injection");
+            Console.WriteLine("Choose and implement SRP ...\n1.Normal Classes\n2.Abstract Classes\n3.Interfaces\n4.Virtual Methods\n\n-----Dependency Injection-----\n\t5.Parameter Injection\n\n6.Design Pattern");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
@@ -61,6 +61,66 @@ public class Restos
                     }
                     
                     break;
+                case 6:
+                    Console.Write("Choose Pattern : \n1.Creational Pattern(Abstract Factory)\n2.Structural Pattern (Facade)\n\n");
+                    int pattern = Convert.ToInt32(Console.ReadLine());
+                    if (pattern == 1)
+                    {
+                        Console.WriteLine("\n------ CREATIONAL PATTERN EXAMPLE ------\n");
+                        ICuisineFactory fastfoodFactory = new IFastFood();
+                        IItalian fast_italian = fastfoodFactory.IGetItalianRestraunt();
+                        IAsian fast_asian = fastfoodFactory.IGetAsianRestraunt();
+
+                        ICuisineFactory bisteroFactory = new IBistero();
+                        IItalian bist_italian = bisteroFactory.IGetItalianRestraunt();
+                        IAsian bist_asian = bisteroFactory.IGetAsianRestraunt();
+
+                        Console.WriteLine("\nArea : FastFood\n");
+
+                        fast_italian.service();
+                        fast_italian.cuisine();
+
+                        fast_asian.service();
+                        fast_asian.cuisine();
+
+                        Console.WriteLine("\nArea : Bistero\n");
+
+                        bist_italian.service();
+                        bist_italian.cuisine();
+
+                        bist_asian.service();
+                        bist_asian.cuisine();
+
+                    }
+                    else if (pattern == 2)
+                    {
+                        Console.WriteLine("\n------ STRUCTURAL PATTERN EXAMPLE ------\n");
+                        RestoFacade rf = new RestoFacade();
+                        creationChoice:
+                        Console.Write(
+                            "Select Options..\n1.Create a Restaurant\n2.Create a Shop\n3.Create Restaurant with in-built shop\n4.Shop with Restaurant Service\n\n");
+                        int creationChoice = Convert.ToInt32(Console.ReadLine());
+                        switch (creationChoice)
+                        {
+                            case 1:
+                                rf.CreateRestaurantOnly();
+                                break;
+                            case 2:
+                                rf.CreateShopOnly();
+                                break;
+                            case 3:
+                                rf.CreateRestaurantWithShop();
+                                break;
+                            case 4:
+                                rf.CreateShopWithRestaurant();
+                                break;
+                            default:
+                                Console.WriteLine("\nInvalid Option\n");
+                                goto creationChoice;
+                        }
+                    }
+                    break;
+                    
                 default:
                     Console.WriteLine("ERROR : Please choose a valid input!!");
                     goto switcher;
