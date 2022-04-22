@@ -62,7 +62,7 @@ public class Restos
                     
                     break;
                 case 6:
-                    Console.Write("Choose Pattern : \n1.Creational Pattern(Abstract Factory)\n2.Structural Pattern (Facade)\n\n");
+                    Console.Write("Choose Pattern : \n1.Creational Pattern(Abstract Factory)\n2.Structural Pattern (Facade)\n3.Behavioural Pattern (Mediator)\n");
                     int pattern = Convert.ToInt32(Console.ReadLine());
                     if (pattern == 1)
                     {
@@ -119,6 +119,31 @@ public class Restos
                                 goto creationChoice;
                         }
                     }
+                    else if (pattern == 3)
+                    {
+                        Console.WriteLine("\n------ BEHAVIOURAL PATTERN EXAMPLE ------\n");
+                        ConcreteMediator mediator = new ConcreteMediator();
+
+                        User Mahesh = new User(mediator, "Mahesh");
+                        DeliveryClient dc1 = new DeliveryClient(mediator, "Rajashekar");
+                        Helpline hp1 = new Helpline(mediator, "Arun");
+
+                        mediator.User = Mahesh;
+                        mediator.Delivery_Client = dc1;
+                        mediator.Helpline = hp1;
+
+                        Mahesh.Send(dc1, "I have not yet recieved my order yet, its been almost 1 hour....");
+                        dc1.Send(Mahesh, "Sorry for the wait will be there in 5 mins...");
+                        hp1.Send(Mahesh, "Sorry for the Inconvienience, You can choose to cancel the order...");
+
+                        dc1.Status = "Off";
+                        
+                        Mahesh.Send(dc1,"Still not recieved order!! I want to cancel");
+                        hp1.Send(Mahesh,"We have cancelled your order, we will make sure to give you better service next time...");
+
+                        Console.ReadLine();
+                    }
+                    
                     break;
                     
                 default:
